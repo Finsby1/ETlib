@@ -3,11 +3,14 @@
 public class Elpris
 {
     public double Pris { get; set; }
-    public DateTime  Tid { get; set; }
     
-    public Elpris( double pris, DateTime tid)
+    
+    
+    
+    public Elpris( double pris)
     {
         Pris = pris;
-        Tid = tid;
     }
+    
+    
 }
