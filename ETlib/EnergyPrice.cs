@@ -4,11 +4,11 @@ public class EnergyPrice
 {
     public int Id { get; set; }
     
-    public double _dkkPrice;
+    private double _dkkPrice;
 
-    public DateTime _time;
+    private DateTime _time;
 
-    public string _category;
+    private string _category;
 
 
     
