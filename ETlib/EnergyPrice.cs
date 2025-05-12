@@ -4,18 +4,20 @@ public class EnergyPrice
 {
     public int Id { get; set; }
     
-    private double _dkkPrice;
+    private double _dkkPerKWh;
 
-    private DateTime _time;
+    private DateTime _timeStart;
 
-    private string _category;
+    private string? _category;
+    
+    
 
 
     
     
-    public double DkkPrice
+    public double DKK_per_kWh
     {
-        get => _dkkPrice;
+        get => _dkkPerKWh;
         set
         {
             if (value <= 0)
@@ -27,13 +29,14 @@ public class EnergyPrice
             {
                 throw new ArgumentOutOfRangeException("Value cannot be more than 19");
             }
-            _dkkPrice = value;
+            _dkkPerKWh = value;
         }
     }
+    
 
-    public DateTime Time
+    public DateTime time_start
     {
-        get => _time;
+        get => _timeStart;
         set
         {
             if (value >= new DateTime(2125, 1, 1, 0, 0, 0))
@@ -45,7 +48,7 @@ public class EnergyPrice
             {
                 throw new ArgumentOutOfRangeException("Value must be greater than 2025");
             }
-            _time = value;
+            _timeStart = value;
         }
     }
 
@@ -54,11 +57,6 @@ public class EnergyPrice
         get => _category;
         set
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("Category cannot be null");
-            }
-
             if (value.Length < 3)
             {
                 throw new ArgumentOutOfRangeException("Category cannot be less than 3 characters");
@@ -67,10 +65,10 @@ public class EnergyPrice
         }
     }
 
-    public EnergyPrice(double dkkPrice, DateTime time, string category)
+    public EnergyPrice(double dkkPerKWh, DateTime timeStart, string category)
     {
-        DkkPrice = dkkPrice;
-        Time = time;
+        DKK_per_kWh = dkkPerKWh;
+        time_start = timeStart;
         Category = category;
     }
 

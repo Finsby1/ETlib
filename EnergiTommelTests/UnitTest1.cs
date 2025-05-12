@@ -11,25 +11,25 @@ public class UnitTest1
     [TestInitialize]    
     public void TestInitialize()
     {
-        _energyPrice = new EnergyPrice(2, new DateTime(2025, 5, 12, 12, 00, 00), "high");
+        //_energyPrice = new EnergyPrice(2, new DateTime(2025, 5, 12, 12, 00, 00), "high");
     } 
 
     [TestMethod]
     public void PriceTest()
     {
-        Assert.AreEqual(2, _energyPrice.DkkPrice);
+        Assert.AreEqual(2, _energyPrice.DKK_per_kWh);
         
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.DkkPrice = 0);
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.DkkPrice = 20);
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.DKK_per_kWh = 0);
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.DKK_per_kWh = 20);
     }
     
     [TestMethod]
     public void DateTest()
     {
-        Assert.AreEqual(new DateTime(2025, 5, 12, 12, 00, 00), _energyPrice.Time);
+        Assert.AreEqual(new DateTime(2025, 5, 12, 12, 00, 00), _energyPrice.time_start);
         
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.Time = new DateTime(2025, 1, 1, 0, 00, 00) );
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.Time = new DateTime(2125, 1, 1, 00, 00, 00));
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.time_start = new DateTime(2025, 1, 1, 0, 00, 00) );
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.time_start = new DateTime(2125, 1, 1, 00, 00, 00));
     }
     
     [TestMethod]
