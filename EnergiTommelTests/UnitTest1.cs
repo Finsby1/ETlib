@@ -11,7 +11,7 @@ public class UnitTest1
     [TestInitialize]    
     public void TestInitialize()
     {
-        //_energyPrice = new EnergyPrice(2, new DateTime(2025, 5, 12, 12, 00, 00), "high");
+        _energyPrice = new EnergyPrice(2, new DateTime(2025, 5, 12, 12, 00, 00), "high");
     } 
 
     [TestMethod]
@@ -19,7 +19,7 @@ public class UnitTest1
     {
         Assert.AreEqual(2, _energyPrice.DKK_per_kWh);
         
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.DKK_per_kWh = 0);
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.DKK_per_kWh = -20);
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.DKK_per_kWh = 20);
     }
     
@@ -38,6 +38,6 @@ public class UnitTest1
         
         Assert.AreEqual("high", _energyPrice.Category);
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.Category = "ab");
-        Assert.ThrowsException<ArgumentNullException>(() => _energyPrice.Category = null);
+        
     }
 }

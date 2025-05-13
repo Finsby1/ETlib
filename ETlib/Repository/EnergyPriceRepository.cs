@@ -11,15 +11,7 @@ public class EnergyPriceRepository
     
     public EnergyPrice Add(EnergyPrice energyPrice, int zone)
     {
-        if (zone == 1)
-        {
-            _energyPricesWest.Clear(); 
-        }
 
-        if (zone == 2)
-        {
-            _energyPricesEast.Clear();
-        }
         
         energyPrice.Id = _nextId++;
         
@@ -41,10 +33,53 @@ public class EnergyPriceRepository
         
     }
 
-    public IEnumerable<EnergyPrice> GetEnergyPricesWest()
+    public IEnumerable<EnergyPrice> GetSavedPrices(int zone)
     {
-        return _energyPricesWest.Values;
+        if (zone == 1)
+        {
+            return _energyPricesWest.Values;
+            
+        }
+        else if (zone == 2)
+        {
+            return _energyPricesEast.Values;
+        }
+        else
+        {
+            throw new ArgumentException("Invalid zone");
+        }
     }
     
-    
+    public EnergyPrice GetByHour(int hour, int zone)
+    {
+        EnergyPrice EPNow;
+        if (zone == 1)
+        {
+            try
+            {
+                EPNow = _energyPricesWest[hour];
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException("No energy price found for the given hour");
+            }
+        }
+        else if (zone == 2)
+        {
+            try
+            {
+                EPNow = _energyPricesEast[hour];
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException("No energy price found for the given hour");
+            }
+        }
+        else
+        {
+            throw new ArgumentException("Invalid zone");
+        }
+
+        return EPNow;
+    }
 }

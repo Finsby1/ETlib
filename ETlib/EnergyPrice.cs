@@ -20,9 +20,9 @@ public class EnergyPrice
         get => _dkkPerKWh;
         set
         {
-            if (value <= 0)
+            if (value <= -20)
             {
-                throw new ArgumentOutOfRangeException("Value cannot be negative");
+                throw new ArgumentOutOfRangeException("Price cannot be less than -20" + value);
             }
 
             if (value >= 20)
