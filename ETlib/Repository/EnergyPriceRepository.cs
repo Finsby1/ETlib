@@ -24,7 +24,7 @@ public class EnergyPriceRepository
         {
             _energyPricesEast.Add(energyPrice.time_start.Hour, energyPrice);
         }
-
+  
         else
         {
             throw new ArgumentException("Invalid zone");

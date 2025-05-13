@@ -23,7 +23,7 @@ public class UnitTest1
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.DKK_per_kWh = 20);
     }
     
-    [TestMethod]
+    [TestMethod] 
     public void DateTest()
     {
         Assert.AreEqual(new DateTime(2025, 5, 12, 12, 00, 00), _energyPrice.time_start);

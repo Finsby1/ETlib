@@ -33,7 +33,7 @@ public class EnergyPrice
         }
     }
     
-
+ 
     public DateTime time_start
     {
         get => _timeStart;
