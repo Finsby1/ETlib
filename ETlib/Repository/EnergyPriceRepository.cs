@@ -13,7 +13,7 @@ public class EnergyPriceRepository
     {
         if (zone == 1)
         {
-            _energyPricesWest.Clear();
+            _energyPricesWest.Clear(); 
         }
 
         if (zone == 2)
