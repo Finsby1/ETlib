@@ -48,4 +48,12 @@ public class UnitTest1
         Assert.AreEqual(3, _repo.GetSavedPrices(1).Count());
         Assert.ThrowsException<ArgumentException>(() => _repo.GetSavedPrices(3));
     }
+
+    [TestMethod]
+    public void RestartTest()
+    {
+        _repo.restart();
+        Assert.AreEqual(0, _repo.GetSavedPrices(1).Count());
+        Assert.AreEqual(0, _repo.GetSavedPrices(2).Count());
+    }
 } 

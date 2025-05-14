@@ -32,6 +32,12 @@ public class EnergyPriceRepository
         return energyPrice;
         
     }
+    public void restart()
+    {
+        _nextId = 0;
+        _energyPricesWest.Clear();
+        _energyPricesEast.Clear();
+    }
 
     public IEnumerable<EnergyPrice> GetSavedPrices(int zone)
     {
