@@ -28,8 +28,10 @@ public class UnitTest1
     {
         Assert.AreEqual(new DateTime(2025, 5, 12, 12, 00, 00), _energyPrice.time_start);
         //husk at sætte tidszone
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.time_start = new DateTimeOffset(2025, 1, 1, 0, 00, 00, TimeSpan.Zero) );
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.time_start = new DateTimeOffset(2125, 1, 1, 00, 00, 00, TimeSpan.Zero));
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.time_start = new DateTimeOffset(2025, 1, 1, 0, 0, 0, TimeSpan.FromHours(2)));
+
+        // Test, at en værdi efter 2125 kaster ArgumentOutOfRangeException
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>_energyPrice.time_start = new DateTimeOffset(2125, 1, 1, 0, 0, 0, TimeSpan.FromHours(2)));
     }
     
     [TestMethod]

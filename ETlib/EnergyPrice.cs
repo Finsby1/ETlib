@@ -41,12 +41,12 @@ public class EnergyPrice
         set
         {
             //er UTC datettime så den tager højde for tidszone og sommer/vinter
-            if (value.UtcDateTime >= new DateTime(2125, 1, 1, 0, 0, 0))
+            if (value >= new DateTimeOffset(2125, 1, 1, 0, 0, 0, TimeSpan.FromHours(2)))
             {
                 throw new ArgumentOutOfRangeException("Value must be less than 2125");
             }
 
-            if (value.UtcDateTime <= new DateTime(2025, 1, 1, 0, 0, 0))
+            if (value <= new DateTimeOffset(2025, 1, 1, 0, 0, 0, TimeSpan.FromHours(2)))
             {
                 throw new ArgumentOutOfRangeException("Value must be greater than 2025");
             }
