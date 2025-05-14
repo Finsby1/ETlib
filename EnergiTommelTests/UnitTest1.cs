@@ -27,9 +27,9 @@ public class UnitTest1
     public void DateTest()
     {
         Assert.AreEqual(new DateTime(2025, 5, 12, 12, 00, 00), _energyPrice.time_start);
-        
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.time_start = new DateTime(2025, 1, 1, 0, 00, 00) );
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.time_start = new DateTime(2125, 1, 1, 00, 00, 00));
+        //husk at sætte tidszone
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.time_start = new DateTimeOffset(2025, 1, 1, 0, 00, 00, TimeSpan.Zero) );
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => _energyPrice.time_start = new DateTimeOffset(2125, 1, 1, 00, 00, 00, TimeSpan.Zero));
     }
     
     [TestMethod]
