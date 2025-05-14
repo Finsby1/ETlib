@@ -5,8 +5,9 @@ public class EnergyPrice
     public int Id { get; set; }
     
     private double _dkkPerKWh;
+    //ændres til offset så den kan se forskellen fra UTC og den tid der står på den. altså + 02:00 som der står i json fra api
 
-    private DateTime _timeStart;
+    private DateTimeOffset _timeStart;
 
     private string? _category;
     
@@ -34,22 +35,25 @@ public class EnergyPrice
     }
     
  
-    public DateTime time_start
+    public DateTimeOffset time_start
     {
         get => _timeStart;
         set
         {
-            if (value >= new DateTime(2125, 1, 1, 0, 0, 0))
+            //er UTC datettime så den tager højde for tidszone og sommer/vinter
+            if (value.UtcDateTime >= new DateTime(2125, 1, 1, 0, 0, 0))
             {
                 throw new ArgumentOutOfRangeException("Value must be less than 2125");
             }
 
-            if (value <= new DateTime(2025, 1, 1, 0, 0, 0))
+            if (value.UtcDateTime <= new DateTime(2025, 1, 1, 0, 0, 0))
             {
                 throw new ArgumentOutOfRangeException("Value must be greater than 2025");
             }
             
-            _timeStart = value;
+            var DKTime = TimeZoneInfo.FindSystemTimeZoneById("central european standard time");
+            _timeStart = TimeZoneInfo.ConvertTime(value, DKTime);
+            
         }
     }
 
