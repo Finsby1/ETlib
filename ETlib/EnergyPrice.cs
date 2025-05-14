@@ -48,6 +48,7 @@ public class EnergyPrice
             {
                 throw new ArgumentOutOfRangeException("Value must be greater than 2025");
             }
+            
             _timeStart = value;
         }
     }
