@@ -132,7 +132,7 @@ public class EnergyPriceRepository
                 energyPrice.Category = "medium";
             }
         }
-        catch (Exception e)
+        catch (Exception e) 
         {
             throw new ArgumentException("could not retrieve price interval");
         }
