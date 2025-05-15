@@ -12,23 +12,24 @@ namespace ETlib.Repository {
             _context = context;
         }
 
-        public void Add(PriceInterval category) {
-            _context.PriceInterval.Add(category);
+        public PriceInterval Add(PriceInterval interval) {
+            _context.PriceInterval.Add(interval);
             _context.SaveChanges();
+            return interval;
         }
 
         public PriceInterval GetById(int id) {
             return _context.PriceInterval.Find(id);
         }
 
-        public void Update(PriceInterval category) {
-            _context.PriceInterval.Update(category);
+        public void Update(PriceInterval interval) {
+            _context.PriceInterval.Update(interval);
             _context.SaveChanges();
         }
         public void Delete(int id) {
-            var category = GetById(id);
-            if (category != null) {
-                _context.PriceInterval.Remove(category);
+            var interval = GetById(id);
+            if (interval != null) {
+                _context.PriceInterval.Remove(interval);
                 _context.SaveChanges();
             }
         }
