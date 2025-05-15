@@ -11,11 +11,11 @@ namespace ETlib.Models;
 [Table("Category")]
 public partial class Category
 {
-    [Column("high", TypeName = "decimal(18, 0)")]
-    public decimal High { get; set; }
+    [Column("high")]
+    public double High { get; set; }
 
-    [Column("low", TypeName = "decimal(18, 0)")]
-    public decimal Low { get; set; }
+    [Column("low")]
+    public double Low { get; set; }
 
     [Key]
     [Column("ID")]
