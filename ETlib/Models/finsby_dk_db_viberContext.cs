@@ -8,9 +8,6 @@ namespace ETlib.Models;
 
 public partial class finsby_dk_db_viberContext : DbContext
 {
-    public finsby_dk_db_viberContext()
-    {
-    }
 
     public finsby_dk_db_viberContext(DbContextOptions<finsby_dk_db_viberContext> options)
         : base(options)
