@@ -28,7 +28,7 @@ public class UnitTest1
     public void AddTest()
     {
         EnergyPrice e = new EnergyPrice()
-            { DKK_per_kWh = 15, Category = "high", Id = 4, time_start = new DateTime(2026, 9, 5, 16, 45, 00) };
+            { DKK_per_kWh = 15, Category = "high", Id = 4, time_start = new DateTimeOffset(2026, 9, 5, 16, 45, 00, TimeSpan.FromHours(2)) };
         _repo.Add(e, 1);
         Assert.AreEqual(4, _repo.GetSavedPrices(1).Count());
     }

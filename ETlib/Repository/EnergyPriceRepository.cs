@@ -1,10 +1,14 @@
 using System.Text.Json.Nodes;
+using ETlib.Models;
+using ETlib.Repository;
 
 namespace ETlib.Repository;
 
 public class EnergyPriceRepository
 {
 
+    PriceIntervalRepository _priceIntervalRepository;
+    
     private int _nextId = 0;
     private readonly Dictionary<int, EnergyPrice> _energyPricesWest = new Dictionary<int, EnergyPrice>();
     private readonly Dictionary<int, EnergyPrice> _energyPricesEast = new Dictionary<int, EnergyPrice>();
@@ -43,11 +47,19 @@ public class EnergyPriceRepository
     {
         if (zone == 1)
         {
+            foreach (EnergyPrice EP in _energyPricesWest.Values)
+            {
+                SetCategory(EP);
+            }
             return _energyPricesWest.Values;
             
         }
         else if (zone == 2)
         {
+            foreach (EnergyPrice EP in _energyPricesEast.Values)
+            {
+                SetCategory(EP);
+            }
             return _energyPricesEast.Values;
         }
         else
@@ -85,7 +97,42 @@ public class EnergyPriceRepository
         {
             throw new ArgumentException("Invalid zone");
         }
+        EnergyPrice EPToSend = SetCategory(EPNow);
+        return EPToSend;
+    }
 
-        return EPNow;
+    public EnergyPrice SetCategory(EnergyPrice energyPrice)
+    {
+        try
+        {
+            PriceInterval? PI = _priceIntervalRepository.GetById(2);
+
+            if (PI == null)
+            {
+                PI = _priceIntervalRepository.GetById(1);
+            }
+
+            if (energyPrice.DKK_per_kWh >= PI.High)
+            {
+                energyPrice.Category = "high";
+            }
+
+            else if (energyPrice.DKK_per_kWh <= PI.Low)
+            {
+                energyPrice.Category = "low";
+            }
+
+            else if (energyPrice.DKK_per_kWh < PI.High && energyPrice.DKK_per_kWh > PI.Low)
+            {
+                energyPrice.Category = "medium";
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentException("could not retrieve price interval");
+        }
+        return energyPrice;
+
+        
     }
 }
