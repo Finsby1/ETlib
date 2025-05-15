@@ -12,7 +12,10 @@ namespace ETlib.Repository {
             _context = context;
         }
 
+        private int nextId = 1;
+
         public PriceInterval Add(PriceInterval interval) {
+            interval.Id = nextId++;
             _context.PriceInterval.Add(interval);
             _context.SaveChanges();
             return interval;
