@@ -37,7 +37,7 @@ public class UnitTest1
     public void GetByHourTest()
     {
         Assert.AreEqual(1, _repo.GetByHour(14, 1).Id);
-        Assert.AreEqual("low", _repo.GetByHour(10, 1).Category);
+        Assert.AreEqual("high", _repo.GetByHour(10, 1).Category);
         Assert.ThrowsException<ArgumentException>(() =>_repo.GetByHour(10, 3));
         Assert.ThrowsException<ArgumentException>(() =>_repo.GetByHour(11, 2));
     }
@@ -47,6 +47,9 @@ public class UnitTest1
     {
         Assert.AreEqual(3, _repo.GetSavedPrices(1).Count());
         Assert.ThrowsException<ArgumentException>(() => _repo.GetSavedPrices(3));
+        
+        List<EnergyPrice> prices = _repo.GetSavedPrices(1).ToList();
+        Assert.AreEqual("high", prices[2].Category);
     }
 
     [TestMethod]
