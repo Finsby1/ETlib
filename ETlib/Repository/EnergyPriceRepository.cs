@@ -9,6 +9,11 @@ public class EnergyPriceRepository
 
     PriceIntervalRepository _priceIntervalRepository;
     
+    public EnergyPriceRepository(PriceIntervalRepository priceIntervalRepository)
+    {
+        _priceIntervalRepository = priceIntervalRepository;
+    }
+    
     private int _nextId = 0;
     private readonly Dictionary<int, EnergyPrice> _energyPricesWest = new Dictionary<int, EnergyPrice>();
     private readonly Dictionary<int, EnergyPrice> _energyPricesEast = new Dictionary<int, EnergyPrice>();
