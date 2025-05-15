@@ -11,10 +11,12 @@ public class UnitTest1
 
     private EnergyPriceRepository _repo;
     
+    private PriceIntervalRepository _priceIntervalRepository;
+    
     [TestInitialize]
     public void Initialize()
     {
-        _repo = new EnergyPriceRepository();
+        _repo = new EnergyPriceRepository(_priceIntervalRepository);
         _repo.Add(new EnergyPrice()
             { DKK_per_kWh = 2, Category = "high", Id = 1, time_start = new DateTime(2026, 6, 15, 12, 00, 00) }, 1);
         _repo.Add(new EnergyPrice()
