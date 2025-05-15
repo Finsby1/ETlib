@@ -8,16 +8,13 @@ namespace ETlib.Models;
 
 public partial class finsby_dk_db_viberContext : DbContext
 {
-    public finsby_dk_db_viberContext()
-    {
-    }
 
     public finsby_dk_db_viberContext(DbContextOptions<finsby_dk_db_viberContext> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<Category> Category { get; set; }
+    public virtual DbSet<PriceInterval> PriceInterval { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -25,7 +22,7 @@ public partial class finsby_dk_db_viberContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Category>(entity =>
+        modelBuilder.Entity<PriceInterval>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("Category_pk");
 

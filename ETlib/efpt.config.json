@@ -15,7 +15,7 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[Category]",
+         "Name": "[dbo].[PriceInterval]",
          "ObjectType": 0
       }
    ],
@@ -31,7 +31,7 @@
    "UseFluentApiOnly": false,
    "UseHandleBars": false,
    "UseHierarchyId": false,
-   "UseInflector": true,
+   "UseInflector": false,
    "UseInternalAccessModifiersForSprocsAndFunctions": false,
    "UseLegacyPluralizer": false,
    "UseManyToManyEntity": false,

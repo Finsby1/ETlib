@@ -8,8 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ETlib.Models;
 
-[Table("Category")]
-public partial class Category
+public partial class PriceInterval
 {
     [Column("high")]
     public double High { get; set; }

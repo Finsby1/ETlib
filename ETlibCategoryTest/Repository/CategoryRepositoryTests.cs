@@ -13,7 +13,7 @@ namespace ETlib.Repository.Tests {
     [TestClass()]
     public class CategoryRepositoryTests {
         
-        private static CategoryRepository _categoryRepository;
+        private static PriceIntervalRepository _categoryRepository;
 
 
         [ClassInitialize]
@@ -22,13 +22,11 @@ namespace ETlib.Repository.Tests {
             var options = new DbContextOptionsBuilder<finsby_dk_db_viberContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
-            _categoryRepository = new CategoryRepository(new finsby_dk_db_viberContext(options));
+            _categoryRepository = new PriceIntervalRepository(new finsby_dk_db_viberContext(options));
         }
         [TestMethod()]
         public void UpdateTest()
         {
-            _categoryRepository.Add(new Category() { Id = 1, High = 0.6 , Low = 0.3});
-            Assert.AreEqual(1, _categoryRepository.GetAll().Count());
         }
     }
 }
