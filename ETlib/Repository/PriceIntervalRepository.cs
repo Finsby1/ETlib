@@ -27,10 +27,9 @@ namespace ETlib.Repository {
         }
 
         public PriceInterval Update(PriceInterval interval) {
-            PriceInterval intervalToUpdate = GetById(2);
-            _context.PriceInterval.Update(intervalToUpdate);
+            _context.PriceInterval.Update(interval);
             _context.SaveChanges();
-            return GetById(2); //kan måske gøres smartere?
+            return GetById(2); 
         }
         public PriceInterval Delete(int id) {
             var interval = GetById(id);
