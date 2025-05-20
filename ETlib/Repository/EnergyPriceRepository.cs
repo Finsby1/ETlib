@@ -45,24 +45,6 @@ public class EnergyPriceRepository
         _energyPricesWest.Clear();
         _energyPricesEast.Clear();
     }
-    public IEnumerable<EnergyPrice> GetAllForTest(int zone)
-    {
-        if (zone == 1)
-        {
-            var values = _energyPricesWest.Values;
-            return values;
-        }
-        else if (zone == 2)
-        {
-            var values = _energyPricesEast.Values;
-            return values;
-        }
-        else
-        {
-            throw new ArgumentException("Invalid zone");
-        }
-
-    }
 
     
     public IEnumerable<EnergyPrice> GetSavedPrices(int zone)
@@ -124,38 +106,6 @@ public class EnergyPriceRepository
         }
         EnergyPrice EPToSend = SetCategory(EPNow);
         return EPToSend;
-    }
-    public EnergyPrice GetByHourForTest( int hour, int zone)
-    {
-        EnergyPrice EPNow;
-        if (zone == 1)
-        {
-            try
-            {
-                EPNow = _energyPricesWest[hour];
-            }
-            catch (Exception e)
-            {
-                throw new ArgumentException("No energy price found for the given hour");
-            }
-        }
-        else if (zone == 2)
-        {
-            try
-            {
-                EPNow = _energyPricesEast[hour];
-            }
-            catch (Exception e)
-            {
-                throw new ArgumentException("No energy price found for the given hour");
-            }
-        }
-        else
-        {
-            throw new ArgumentException("Invalid zone");
-        }
-        return EPNow;
-
     }
     
 

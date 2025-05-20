@@ -24,9 +24,6 @@ namespace ETlib.Repository {
         public PriceInterval? GetById(int id) {
 
             var interval = _context.PriceInterval.AsNoTracking().FirstOrDefault(x => x.Id == id);
-            if (interval == null) {
-                throw new ArgumentException($"PriceInterval with ID {id} not found.");
-            }
             return interval;
         }
 
