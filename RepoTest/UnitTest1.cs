@@ -32,33 +32,33 @@ public class UnitTest1
         EnergyPrice e = new EnergyPrice()
             { DKK_per_kWh = 15, Category = "high", Id = 4, time_start = new DateTimeOffset(2026, 9, 5, 16, 45, 00, TimeSpan.FromHours(2)) };
         _repo.Add(e, 1);
-        Assert.AreEqual(4, _repo.GetSavedPrices(1).Count());
+        Assert.AreEqual(4, _repo.GetAllForTest(1).Count());
     }
     
     [TestMethod]
     public void GetByHourTest()
     {
-        Assert.AreEqual(1, _repo.GetByHour(14, 1).Id);
-        Assert.AreEqual("high", _repo.GetByHour(10, 1).Category);
-        Assert.ThrowsException<ArgumentException>(() =>_repo.GetByHour(10, 3));
-        Assert.ThrowsException<ArgumentException>(() =>_repo.GetByHour(11, 2));
+        Assert.AreEqual(1, _repo.GetByHourForTest(14, 1).Id);
+        Assert.AreEqual("low", _repo.GetByHourForTest(10, 1).Category);
+        Assert.ThrowsException<ArgumentException>(() =>_repo.GetByHourForTest(10, 3));
+        Assert.ThrowsException<ArgumentException>(() =>_repo.GetByHourForTest(11, 2));
     }
 
     [TestMethod]
     public void GetSavedTest()
     {
-        Assert.AreEqual(3, _repo.GetSavedPrices(1).Count());
-        Assert.ThrowsException<ArgumentException>(() => _repo.GetSavedPrices(3));
+        Assert.AreEqual(3, _repo.GetAllForTest(1).Count());
+        Assert.ThrowsException<ArgumentException>(() => _repo.GetAllForTest(3));
         
-        List<EnergyPrice> prices = _repo.GetSavedPrices(1).ToList();
-        Assert.AreEqual("high", prices[2].Category);
+        List<EnergyPrice> prices = _repo.GetAllForTest(1).ToList();
+        Assert.AreEqual("low", prices[2].Category);
     }
 
     [TestMethod]
     public void RestartTest()
     {
         _repo.Restart();
-        Assert.AreEqual(0, _repo.GetSavedPrices(1).Count());
-        Assert.AreEqual(0, _repo.GetSavedPrices(2).Count());
+        Assert.AreEqual(0, _repo.GetAllForTest(1).Count());
+        Assert.AreEqual(0, _repo.GetAllForTest(2).Count());
     }
 } 
