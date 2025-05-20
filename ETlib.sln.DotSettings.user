@@ -5,5 +5,6 @@
     &lt;TestId&gt;MSTest::059E3EB5-062B-4347-B902-3FE2D9C6A104::net8.0::RepoTest.UnitTest1.GetByHourTest&lt;/TestId&gt;
     &lt;TestId&gt;MSTest::059E3EB5-062B-4347-B902-3FE2D9C6A104::net8.0::RepoTest.UnitTest1.AddTest&lt;/TestId&gt;
     &lt;TestId&gt;MSTest::059E3EB5-062B-4347-B902-3FE2D9C6A104::net8.0::RepoTest.UnitTest1.GetSavedTest&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::059E3EB5-062B-4347-B902-3FE2D9C6A104::net8.0::RepoTest.UnitTest1.RestartTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

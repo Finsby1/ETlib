@@ -57,7 +57,7 @@ public class UnitTest1
     [TestMethod]
     public void RestartTest()
     {
-        _repo.restart();
+        _repo.Restart();
         Assert.AreEqual(0, _repo.GetSavedPrices(1).Count());
         Assert.AreEqual(0, _repo.GetSavedPrices(2).Count());
     }

@@ -41,7 +41,7 @@ public class EnergyPriceRepository
         return energyPrice;
         
     }
-    public void restart()
+    public void Restart()
     {
         _nextId = 0;
         _energyPricesWest.Clear();
@@ -52,20 +52,23 @@ public class EnergyPriceRepository
     {
         if (zone == 1)
         {
-            foreach (EnergyPrice EP in _energyPricesWest.Values)
+            var values = _energyPricesWest.Values;
+            foreach (EnergyPrice EP in values)
             {
                 SetCategory(EP);
             }
-            return _energyPricesWest.Values;
+            return values;
             
         }
         else if (zone == 2)
         {
-            foreach (EnergyPrice EP in _energyPricesEast.Values)
+            
+            var values = _energyPricesEast.Values;
+            foreach (EnergyPrice EP in values)
             {
                 SetCategory(EP);
             }
-            return _energyPricesEast.Values;
+            return values;
         }
         else
         {
@@ -105,6 +108,7 @@ public class EnergyPriceRepository
         EnergyPrice EPToSend = SetCategory(EPNow);
         return EPToSend;
     }
+    
 
     public EnergyPrice SetCategory(EnergyPrice energyPrice)
     {
@@ -117,20 +121,7 @@ public class EnergyPriceRepository
                 PI = _priceIntervalRepository.GetById(1);
             }
 
-            if (energyPrice.DKK_per_kWh >= PI.High)
-            {
-                energyPrice.Category = "high";
-            }
-
-            else if (energyPrice.DKK_per_kWh <= PI.Low)
-            {
-                energyPrice.Category = "low";
-            }
-
-            else if (energyPrice.DKK_per_kWh < PI.High && energyPrice.DKK_per_kWh > PI.Low)
-            {
-                energyPrice.Category = "medium";
-            }
+            SetCategory2(energyPrice, PI);
         }
         catch (Exception e) 
         {
@@ -139,5 +130,23 @@ public class EnergyPriceRepository
         return energyPrice;
 
         
+    }
+
+    public static void SetCategory2(EnergyPrice energyPrice, PriceInterval PI)
+    {
+        if (energyPrice.DKK_per_kWh >= PI.High)
+        {
+            energyPrice.Category = "high";
+        }
+
+        else if (energyPrice.DKK_per_kWh <= PI.Low)
+        {
+            energyPrice.Category = "low";
+        }
+
+        else if (energyPrice.DKK_per_kWh < PI.High && energyPrice.DKK_per_kWh > PI.Low)
+        {
+            energyPrice.Category = "medium";
+        }
     }
 }
