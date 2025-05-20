@@ -10,8 +10,9 @@ public class UnitTest1
 {
 
     private EnergyPriceRepository _repo;
-    
     private PriceIntervalRepository _priceIntervalRepository;
+    
+    
     
     [TestInitialize]
     public void Initialize()
@@ -60,5 +61,11 @@ public class UnitTest1
         _repo.Restart();
         Assert.AreEqual(0, _repo.GetAllForTest(1).Count());
         Assert.AreEqual(0, _repo.GetAllForTest(2).Count());
+    }
+
+    [TestMethod]
+    public void SetCat2Test()
+    {
+        
     }
 } 

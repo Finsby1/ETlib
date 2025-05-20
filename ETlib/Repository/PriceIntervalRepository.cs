@@ -22,34 +22,19 @@ namespace ETlib.Repository {
         }
 
         public PriceInterval? GetById(int id) {
-            return _context.PriceInterval.AsNoTracking().FirstOrDefault(x => x.Id == id);
-        }
 
-        public PriceInterval? Update(PriceInterval interval) {
-            _context.PriceInterval.Update(interval);
-            _context.SaveChanges();
-            return GetById(2); 
-        }
-        public PriceInterval Delete(int id) {
-            var interval = GetById(id);
-
-            try
-            {
-                if (interval != null)
-                {
-                    _context.PriceInterval.Remove(interval);
-                    _context.SaveChanges();
-                }
-
-            }
-            catch (Exception e)
-            {
-                throw new ArgumentNullException("Cannot delete PriceInterval because it was not found", e);
+            var interval = _context.PriceInterval.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            if (interval == null) {
+                throw new ArgumentException($"PriceInterval with ID {id} not found.");
             }
             return interval;
         }
-        public IEnumerable<PriceInterval> GetAll() {
-            return _context.PriceInterval.ToList();
+
+        public PriceInterval? Update(PriceInterval interval) {
+
+            _context.PriceInterval.Update(interval);
+            _context.SaveChanges();
+            return GetById(2); 
         }
     }
 }
